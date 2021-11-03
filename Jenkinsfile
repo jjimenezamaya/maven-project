@@ -1,39 +1,26 @@
 pipeline {
-    agent any 
+    agent any  
     stages{
-        stage('Stage 1'){
-            steps{
-                echo 'Hello world'
-            }
-        }
-    }
-
-    /*stages{
         stage('Build'){
-            steps{
-                echo 'Cleaning...'
-                withMaven {
-                    sh 'mvn clean'
-                }
-                
-                echo 'Cleaned'
-                echo 'Packaging...'
-                
-                withMaven {
-                    sh 'mvn package'
-                }
-                
-                echo 'Packaged'
+            git url: 'https://github.com/jjimenezamaya/maven-project'
+            echo 'Cleaning and packaging with maven...'
+
+            withMaven {
+                sh 'mvn clean package'
             }
 
             post{
                 success{
+                    echo 'DONE'
                     echo 'Now Archiving...'
-                    archiveArtifacts artifacts: 
-                    //target/*.war'
+                    archiveArtifacts artifacts: '**/target/*.war'
                     echo 'Archived'
+                }
+
+                failure {
+                    echo 'FAILED'
                 }
             }
         }
-    }*/
+    }
 }
