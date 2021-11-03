@@ -5,10 +5,17 @@ pipeline {
         stage('Build'){
             steps{
                 echo 'Cleaning...'
-                sh 'mvn clean'
+                withMaven {
+                    sh 'mvn clean'
+                }
+                
                 echo 'Cleaned'
                 echo 'Packaging...'
-                sh 'mvn package'
+                
+                withMaven {
+                    sh 'mvn package'
+                }
+                
                 echo 'Packaged'
             }
 
