@@ -7,7 +7,7 @@ pipeline {
                 echo 'Cleaning and packaging with maven...'
 
                 withMaven {
-                    sh 'mvn clean package'
+                    bat 'mvn clean package'
                 }
             }
 
