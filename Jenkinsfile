@@ -2,13 +2,15 @@ pipeline {
     agent any  
     stages{
         stage('Build'){
-            git url: 'https://github.com/jjimenezamaya/maven-project'
-            echo 'Cleaning and packaging with maven...'
+            step {
+                git url: 'https://github.com/jjimenezamaya/maven-project'
+                echo 'Cleaning and packaging with maven...'
 
-            withMaven {
-                sh 'mvn clean package'
+                withMaven {
+                    sh 'mvn clean package'
+                }
             }
-
+            
             post{
                 success{
                     echo 'DONE'
