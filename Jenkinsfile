@@ -4,9 +4,12 @@ pipeline {
     stages{
         stage('Build'){
             steps{
-                echo 'Starting with clean package command'
-                sh 'mvn clean package'
-                echo 'Cleaned and packaged'
+                echo 'Cleaning...'
+                sh 'mvn clean'
+                echo 'Cleaned'
+                echo 'Packaging...'
+                sh 'mvn package'
+                echo 'Packaged'
             }
 
             post{
