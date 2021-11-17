@@ -20,7 +20,7 @@ pipeline {
                 }
 
                 failure {
-                    echo 'FAILED'
+                    echo 'FAILEDD'
                 }
             }
         }
